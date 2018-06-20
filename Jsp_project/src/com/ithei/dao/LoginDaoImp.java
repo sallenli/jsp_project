@@ -19,6 +19,7 @@ public class LoginDaoImp implements LoginDao{
 		String[] params={username,password};
 		try {
 			User user = queryRunner.query(sql, new BeanHandler<User>(User.class), params);
+		//	JdbcUtils.disconnectDateSource();
 			return user;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

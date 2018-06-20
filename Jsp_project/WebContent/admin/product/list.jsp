@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <HTML>
 <HEAD>
 <meta http-equiv="Content-Language" content="zh-cn">
@@ -17,6 +18,7 @@
 	<br>
 	<form id="Form1" name="Form1"
 		action="${pageContext.request.contextPath}/user/list.jsp"
+		<%-- action="${pageContext.request.contextPath}/productServlet" --%>
 		method="post">
 		<table cellSpacing="1" cellPadding="0" width="100%" align="center"
 			bgColor="#f5fafe" border="0">
@@ -51,16 +53,21 @@
 							</tr>
 							<tr onmouseover="this.style.backgroundColor = 'white'"
 								onmouseout="this.style.backgroundColor = '#F5FAFE';">
+								<c:forEach var="p" items="${product}">
 								<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-									width="18%">1</td>
+									width="18%">${p.pid}</td>
 								<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-									width="17%"><img width="40" height="45" src=""></td>
+									width="17%"><img width="40" height="45" src="${p.pimage}"></td>
 								<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-									width="17%">电视机</td>
+									width="17%">${p.pname }</td>
 								<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-									width="17%">3000</td>
+									width="17%">${p.market_price }</td>
+									
 								<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-									width="17%">是</td>
+									width="17%">
+									<c:if test="${p.is_hot==0}">否</c:if>
+									<c:if test="${p.is_hot==1 }">是</c:if>
+									</td>
 								<td align="center" style="HEIGHT: 22px"><a
 									href="${ pageContext.request.contextPath }/admin/product/edit.jsp">
 										<img
@@ -68,11 +75,14 @@
 										border="0" style="CURSOR: hand">
 								</a></td>
 
-								<td align="center" style="HEIGHT: 22px"><a href="#"> <img
+								<td align="center" style="HEIGHT: 22px">
+								<a href="${pageContext.request.contextPath }/deleteProductServlet?pid=${p.pid}"> <img
 										src="${pageContext.request.contextPath}/images/i_del.gif"
 										width="16" height="16" border="0" style="CURSOR: hand">
 								</a></td>
+								
 							</tr>
+							</c:forEach>
 						</table>
 					</td>
 				</tr>

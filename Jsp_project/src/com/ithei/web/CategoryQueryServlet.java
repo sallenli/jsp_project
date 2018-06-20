@@ -46,7 +46,7 @@ public class CategoryQueryServlet extends HttpServlet {
 		CategoryService cs=new CategoryServiceImp();
 		List<Category> category = cs.query();
 		request.setAttribute("category", category);
-		request.getRequestDispatcher("/admin/product/list.jsp").forward(request, response);
+		request.getRequestDispatcher("/admin/category/list.jsp").forward(request, response);
 		
 		
 	}

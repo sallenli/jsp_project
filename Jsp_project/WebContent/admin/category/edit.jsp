@@ -7,7 +7,7 @@
 	</HEAD>
 	
 	<body>
-		<form id="userAction_save_do" name="Form1" action="${pageContext.request.contextPath}/adminCategory_update.action" method="post">
+		<form id="userAction_save_do" name="Form1" action="${pageContext.request.contextPath}/updateServlet" method="post">
 			&nbsp;
 			<table cellSpacing="1" cellPadding="5" width="100%" align="center" bgColor="#eeeeee" style="border: 1px solid #8ba7e3" border="0">
 				<tr>
@@ -23,7 +23,15 @@
 						分类名称：
 					</td>
 					<td class="ta_01" bgColor="#ffffff" colspan="3">
-						<input type="text" name="cname" value="" id="userAction_save_do_logonName" class="bg"/>
+					<%
+					String cid=request.getParameter("cid");
+					String cname=request.getParameter("cname");
+					cname=new String(cname.getBytes("iso-8859-1"),"utf-8");
+					pageContext.setAttribute("cid", cid);
+					pageContext.setAttribute("cname", cname);
+					%>
+					<input type="hidden" name="cid" value="${cid}">
+						<input type="text" name="cname" value="${cname}"  class="bg"/>
 					</td>
 				</tr>
 			

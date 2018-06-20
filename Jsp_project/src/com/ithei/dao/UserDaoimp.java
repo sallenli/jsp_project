@@ -23,7 +23,7 @@ public class UserDaoimp implements UserDao{
 		try {
 		
 				int i = queryRunner.update(sql,user.getUserName(),user.getUserPassword(),user.getAge(),user.getHobby());
-			
+			//	JdbcUtils.disconnectDateSource();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

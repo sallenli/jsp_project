@@ -20,7 +20,9 @@ public class CategoryDaoImp implements CategoryDao {
 		QueryRunner queryRunner = new QueryRunner(JdbcUtils.getDatesource());
 		try {
 			List<Category> query = queryRunner.query(sql,new BeanListHandler<Category>(Category.class));
+		//	JdbcUtils.disconnectDateSource();
 			return query;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
