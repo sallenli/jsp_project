@@ -6,6 +6,8 @@ import com.itheima.domain.Product;
 
 public interface ProductQueryDao {
 
-	List<Product> query();
+	List<Product> query(int page, int pagesize);
+
+	long totalCounts();
 
 }

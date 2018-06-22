@@ -6,6 +6,8 @@ import com.itheima.domain.Product;
 
 public interface ProductQueryService {
 
-	List<Product> query();
+	List<Product> query(int page, int pagesize);
+
+	int[] generatePageBar(int page, int pagesize);
 
 }

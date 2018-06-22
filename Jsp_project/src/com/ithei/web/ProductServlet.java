@@ -35,9 +35,22 @@ public class ProductServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+		int page=1;
+		int pagesize=4;
+		String nextPage=request.getParameter("page");
+		String nextPageSize=request.getParameter("pageSize");
+		if(nextPage!=null&&nextPageSize!=null)
+		{
+			page=Integer.parseInt(nextPage);
+			pagesize=Integer.parseInt(nextPageSize);
+		}
 		ProductQueryService ps=new ProductQueryServiceImp();
-		List<Product> product = ps.query();
+		List<Product> product = ps.query(page,pagesize);
+		int [] pageBar=ps.generatePageBar(page,pagesize);
+		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("product", product);
+		request.setAttribute("page", page);
+		request.setAttribute("pageSize", pagesize);
 		request.getRequestDispatcher("/admin/product/list.jsp").forward(request, response);
 		
 	}

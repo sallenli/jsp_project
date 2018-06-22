@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <HTML>
 <HEAD>
 <meta http-equiv="Content-Language" content="zh-cn">
@@ -9,10 +9,10 @@
 <script language="javascript"
 	src="${pageContext.request.contextPath}/js/public.js"></script>
 <script type="text/javascript">
-			function addProduct(){
-				window.location.href = "${pageContext.request.contextPath}/admin/product/add.jsp";
-			}
-		</script>
+	function addProduct() {
+		window.location.href = "${pageContext.request.contextPath}/admin/product/add.jsp";
+	}
+</script>
 </HEAD>
 <body>
 	<br>
@@ -51,36 +51,35 @@
 								<td width="7%" align="center">编辑</td>
 								<td width="7%" align="center">删除</td>
 							</tr>
+
 							<tr onmouseover="this.style.backgroundColor = 'white'"
 								onmouseout="this.style.backgroundColor = '#F5FAFE';">
 								<c:forEach var="p" items="${product}">
-								<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-									width="18%">${p.pid}</td>
-								<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-									width="17%"><img width="40" height="45" src="${p.pimage}"></td>
-								<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-									width="17%">${p.pname }</td>
-								<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-									width="17%">${p.market_price }</td>
-									
-								<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-									width="17%">
-									<c:if test="${p.is_hot==0}">否</c:if>
-									<c:if test="${p.is_hot==1 }">是</c:if>
-									</td>
-								<td align="center" style="HEIGHT: 22px"><a
-									href="${ pageContext.request.contextPath }/admin/product/edit.jsp">
-										<img
-										src="${pageContext.request.contextPath}/images/i_edit.gif"
-										border="0" style="CURSOR: hand">
-								</a></td>
+									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
+										width="18%">${p.pid}</td>
+									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
+										width="17%"><img width="40" height="45" src="${p.pimage}"></td>
+									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
+										width="17%">${p.pname }</td>
+									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
+										width="17%">${p.market_price }</td>
 
-								<td align="center" style="HEIGHT: 22px">
-								<a href="${pageContext.request.contextPath }/deleteProductServlet?pid=${p.pid}"> <img
-										src="${pageContext.request.contextPath}/images/i_del.gif"
-										width="16" height="16" border="0" style="CURSOR: hand">
-								</a></td>
-								
+									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
+										width="17%"><c:if test="${p.is_hot==0}">否</c:if> <c:if
+											test="${p.is_hot==1 }">是</c:if></td>
+									<td align="center" style="HEIGHT: 22px"><a
+										href="${ pageContext.request.contextPath }/admin/product/edit.jsp">
+											<img
+											src="${pageContext.request.contextPath}/images/i_edit.gif"
+											border="0" style="CURSOR: hand">
+									</a></td>
+
+									<td align="center" style="HEIGHT: 22px"><a
+										href="${pageContext.request.contextPath }/deleteProductServlet?pid=${p.pid}">
+											<img
+											src="${pageContext.request.contextPath}/images/i_del.gif"
+											width="16" height="16" border="0" style="CURSOR: hand">
+									</a></td>
 							</tr>
 							</c:forEach>
 						</table>
@@ -90,6 +89,31 @@
 			</TBODY>
 		</table>
 	</form>
+	<!-- 分页代码 -->
+	<div align="center">
+		<a
+			href="${pageContext.request.contentType}/list/ProductServlet?page=${page-1}&pageSize=4">上一页
+		</a>&nbsp;
+		
+		<c:forEach var="p" items="${pageBar }">
+		      
+			<c:if test="${page==p}">
+			  
+				<font color="blue" size="5px">${p}</font>
+			</c:if> 
+			
+		<!-- 	<c:if test="${page==p}">
+		              <font color="blue" size="10px">${p }</font>
+		           </c:if>
+		           -->
+			<c:if test="${page!=p }">
+				<a
+					href="${pageContext.request.contextPath }/productServlet?page=${p}&pageSize=4">${p }</a>
+			</c:if>
+		</c:forEach>
+		<a
+			href='${pageContext.request.contextPath}/productServlet?page=${page+1}&pageSize=4'>&nbsp;下一页</a>
+	</div>
 </body>
 </HTML>
 

@@ -27,7 +27,7 @@ public class DeleteProductServlet extends HttpServlet {
 				String deleteId = request.getParameter("pid");
 				DeleteProductService ds=new DeleteProductServiceImp();
 				ds.delete(deleteId);
-				response.sendRedirect(request.getContextPath()+"/admin/product/list");
+				response.sendRedirect(request.getContextPath()+"/productServlet");
 	}
 
 	/**

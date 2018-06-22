@@ -50,15 +50,20 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String code = (String) request.getSession().getAttribute("code");
 		String checkcode = (String) request.getParameter("checkcode");
+		/*LoginService ls=new LoginServiceImp();
+		ls.judge(username, password);
+		request.getRequestDispatcher("/admin/home.jsp").forward(request, response);*/
 		if (checkcode.endsWith(code)) {
 			
 			LoginService ls = new LoginServiceImp();
 			ls.judge(username, password);
 			request.getRequestDispatcher("/admin/home.jsp").forward(request, response);
-		} else {
-			request.setAttribute("code_Error", "验证码错误");
-			request.getRequestDispatcher("/loginError.jsp").forward(request, response);
 		}
+		else {
+			request.setAttribute("code_Error", "验证码错误");
+		request.getRequestDispatcher("/loginError.jsp").forward(request, response);
+		}
+		
 
 	}
 

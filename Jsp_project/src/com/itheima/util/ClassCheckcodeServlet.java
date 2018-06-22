@@ -20,7 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "CheckcodeServlet", urlPatterns = { "/checkcodeServlet" })
 public class ClassCheckcodeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	static{
+        System.setProperty("java.awt.headless", "true");
+    }
     /**
      * @see HttpServlet#HttpServlet()
      */

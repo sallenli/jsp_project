@@ -8,7 +8,7 @@ public class DeleteProductServiceImp implements DeleteProductService {
 	@Override
 	public void delete(String deleteId) {
 		// TODO Auto-generated method stub
-		
+		dd.deleProduct(deleteId);
 	}
 
 }
